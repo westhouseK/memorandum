@@ -7,7 +7,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: '備忘録',
-  description: '旅の備忘録です',
+  description: '世界一周旅行の備忘録です。',
 }
 
 export default function RootLayout({
