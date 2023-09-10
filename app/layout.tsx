@@ -1,8 +1,9 @@
+import { Metadata } from "next"
+
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 
 import './globals.css'
-import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: '備忘録',
