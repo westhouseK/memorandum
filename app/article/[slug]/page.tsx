@@ -1,11 +1,14 @@
 import { readFileSync } from "fs"
 import path from "path"
 
+import Image from 'next/image';
+
 import matter from "gray-matter"
 import rehypeStringify from "rehype-stringify"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
+
 
 async function getArticle(slug: string) {
   const { data, content } = matter(readFileSync(path.join(process.cwd(), "articles", slug, "index.md")))
@@ -22,6 +25,17 @@ async function getArticle(slug: string) {
 export default async function Article({ params }: { params: { slug: string } }) {
   const { data, content } = await getArticle(params.slug)
   return (
-    <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    <div className="prose prose-lg max-w-none">
+      <div>
+        <Image
+          src={`/image/${params.slug}/main_visual.jpg`}
+          width={1200}
+          height={700}
+          alt={data.title}
+        />
+      </div>
+      <h1 className="mt-12">{data.title}</h1>
+      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+    </div>
   )
 }
