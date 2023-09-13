@@ -35,6 +35,8 @@ export default async function Article({ params }: { params: { slug: string } }) 
         />
       </div>
       <h1 className="mt-12">{data.title}</h1>
+      <span className="block">作成日時: {data.createdAt}</span>
+      <span className="block">更新日時: {data.updatedAt}</span>
       <div dangerouslySetInnerHTML={{ __html: content }}></div>
     </div>
   )
