@@ -13,7 +13,6 @@ import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
 import { unified } from "unified"
 
-
 async function getArticle(slug: string) {
   const { data, content } = matter(readFileSync(path.join(process.cwd(), "articles", slug, "index.md")))
   return {
