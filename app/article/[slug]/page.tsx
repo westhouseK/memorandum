@@ -1,9 +1,13 @@
 import { readFileSync } from "fs"
 import path from "path"
 
+import { createElement } from "react";
+
 import Image from 'next/image';
 
 import matter from "gray-matter"
+import rehypeParse from "rehype-parse";
+import rehypeReact from "rehype-react";
 import rehypeStringify from "rehype-stringify"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
@@ -22,6 +26,15 @@ async function getArticle(slug: string) {
   }
 }
 
+const toReactNode = (content: string) => {
+  return unified()
+    .use(rehypeParse, { fragment: true })
+    .use(rehypeReact, {
+      createElement,
+    })
+    .processSync(content).result
+}
+
 export default async function Article({ params }: { params: { slug: string } }) {
   const { data, content } = await getArticle(params.slug)
   return (
@@ -37,7 +50,7 @@ export default async function Article({ params }: { params: { slug: string } }) 
       <h1 className="mt-12">{data.title}</h1>
       <span className="block">作成日時: {data.createdAt}</span>
       <span className="block">更新日時: {data.updatedAt}</span>
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
+      {toReactNode(content)}
     </div>
   )
 }
