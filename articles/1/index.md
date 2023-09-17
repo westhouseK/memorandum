@@ -27,8 +27,8 @@ tags:
 ## SNS
 世界一周の始めったら、Instagramを開設してそちらでも記録を残していこうと思います。
 
-- X(Twitter)
-  - https://twitter.com/notifications
+- [X(Twitter)](https://twitter.com/westhouse_k)
+  
 
 ## おわりに
 なにか質問等あれば、いつでもXでリプライやDMを送ってください！
